@@ -1,0 +1,10 @@
+*.tfstate
+*.tfstate.*
+.terraform/
+crash.log
+*.tfvars
+!example.tfvars
+*.retry
+inventory.ini
+ansible/kubeconfig
+*.kubeconfig
