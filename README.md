@@ -30,7 +30,16 @@ helm install backend  ./backend  -n td2 --wait
 helm install frontend ./frontend -n td2 --wait
 ```
 
-Application : `http://<floating_ip>`. Destruction : `helm uninstall`, puis `terraform destroy`.
+Application : `http://<floating_ip>`.
+
+Destruction : `helm uninstall` des 3 releases, `kubectl -n td2 delete pvc --all`
+(le PVC du StatefulSet n'est pas supprimé par Helm), puis `terraform destroy`.
+
+## Bonus — compteur de visites
+
+Le dépôt contient la version avec l'endpoint `GET /api/visits` et la card « Visites totales ».
+La table `visits` est créée par `init.sql` lors d'un déploiement neuf ; sur une base
+existante, elle doit être ajoutée par migration (le script d'init ne rejoue pas).
 
 ## Choix et écarts par rapport à l'énoncé
 
